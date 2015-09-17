@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">remindMe</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="remindMe">remindMe</string>
+    <string name="desc">Description</string>
+    <string name="title">Title</string>
+</resources>
