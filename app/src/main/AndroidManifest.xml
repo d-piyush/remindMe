@@ -3,6 +3,9 @@
     package="com.mycompany.remindme" >
 
     <uses-sdk android:minSdkVersion="16" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.vibrate" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -26,6 +29,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycompany.remindme.MainActivity" />
         </activity>
+
+
+        <receiver android:name=".AlarmReceiver"></receiver>
+
+        <receiver android:name=".BootReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
+        <service android:name=".AlarmSchedulingService" />
     </application>
 
 </manifest>

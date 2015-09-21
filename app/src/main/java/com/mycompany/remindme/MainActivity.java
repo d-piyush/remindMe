@@ -5,8 +5,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static int hour;
+    public static int minute;
+    public static int month;
+    public static int day;
+    public static int year;
+
+    public static  String titleText;
+    public static  String descText;
+
+    AlarmReceiver alarm = new AlarmReceiver();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,5 +52,28 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setReminder(View view) {
+
+        DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
+        TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
+
+        EditText title = (EditText) findViewById(R.id.titleText);
+        EditText desc = (EditText) findViewById(R.id.descText);
+
+        titleText = String.valueOf(title.getText());
+        descText = String.valueOf(desc.getText());
+
+        hour = timePicker.getCurrentHour();
+        minute = timePicker.getCurrentMinute();
+
+        day = datePicker.getDayOfMonth();
+        month = datePicker.getMonth();
+        year = datePicker.getYear();
+
+        alarm.setAlarm(this);
+        Toast.makeText(MainActivity.this, "Reminder is set", Toast.LENGTH_SHORT).show();
+
     }
 }
